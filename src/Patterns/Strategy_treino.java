@@ -26,14 +26,14 @@ public class Strategy_treino {
     static class CartaoDeDebito implements MeioDePagamento {
         public void pagar(TipoPagamento tipoPagamento) {
             System.out.println("pagamento de "+tipoPagamento.tipoPagamento=="1"? enumPagamento.CREDITO: enumPagamento.CREDITO);
-            System.out.println("valor de "+tipoPagamento.bigDecimal);
+            System.out.println("valor de "+tipoPagamento.bigDecimal+" no"+ (enumPagamento.DEBITO));
         }
     }
 
     static class CartaoDeCredito implements MeioDePagamento {
         public void pagar(TipoPagamento tipoPagamento) {
             System.out.println("pagamento de "+tipoPagamento.tipoPagamento=="1"? enumPagamento.CREDITO: enumPagamento.CREDITO);
-            System.out.println("valor de "+tipoPagamento.bigDecimal);
+            System.out.println("valor de "+tipoPagamento.bigDecimal+" no"+ (enumPagamento.CREDITO));
         }
     }
 
@@ -42,8 +42,19 @@ public class Strategy_treino {
     }
 
     public enum enumPagamento {
-        CREDITO ,
-        DEBITO  ;
+        CREDITO(" crédito") ,
+        DEBITO(" débito")  ;
+
+        String tipo;
+
+        enumPagamento(String desc) {
+            this.tipo = desc;
+        }
+
+        @Override
+        public String toString() {
+            return this.tipo;
+        }
     }
 
 }
